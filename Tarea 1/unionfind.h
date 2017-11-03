@@ -16,7 +16,8 @@ public:
 
 class UnionFind {                                              // OOP style
 private:
-  vi p, rank, setSize;                       // remember: vi is vector<int>
+  vi p, rank, setSize, fsets;                       // remember: vi is vector<int>
+  vector <vi > fobiaArrays;
   vector<persona> arreglo;
   int numSets;
 public:
@@ -27,6 +28,7 @@ public:
   void unionSet(int i, int j);
   int numDisjointSets();
   int sizeOfSet(int i);
+  vector<vi > setFobiaArrays(int fobias);
 };
 
 #endif

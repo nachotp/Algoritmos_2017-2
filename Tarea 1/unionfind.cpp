@@ -1,8 +1,9 @@
 
 #include <vector>
+#include <iostream>
+#include <algorithm>
 #include "unionfind.h"
 using namespace std;
-
 
 persona::persona(int f){
     fobia = f;
@@ -58,29 +59,33 @@ int UnionFind::sizeOfSet(int i) {
   return setSize[findSet(i)];
 }
 
-
-
-// Union-Find Disjoint Sets Library written in OOP manner, using both path compression and union by rank heuristics
-
-/*
-int main() {
-  printf("Assume that there are 5 disjoint sets initially\n");
-  UnionFind UF(5); // create 5 disjoint sets
-  printf("%d\n", UF.numDisjointSets()); // 5
-  UF.unionSet(0, 1);
-  printf("%d\n", UF.numDisjointSets()); // 4
-  UF.unionSet(2, 3);
-  printf("%d\n", UF.numDisjointSets()); // 3
-  UF.unionSet(4, 3);
-  printf("%d\n", UF.numDisjointSets()); // 2
-  printf("isSameSet(0, 3) = %d\n", UF.isSameSet(0, 3)); // will return 0 (false)
-  printf("isSameSet(4, 3) = %d\n", UF.isSameSet(4, 3)); // will return 1 (true)
-  for (int i = 0; i < 5; i++) // findSet will return 1 for {0, 1} and 3 for {2, 3, 4}
-    printf("findSet(%d) = %d, sizeOfSet(%d) = %d\n", i, UF.findSet(i), i, UF.sizeOfSet(i));
-  UF.unionSet(0, 3);
-  printf("%d\n", UF.numDisjointSets()); // 1
-  for (int i = 0; i < 5; i++) // findSet will return 3 for {0, 1, 2, 3, 4}
-    printf("findSet(%d) = %d, sizeOfSet(%d) = %d\n", i, UF.findSet(i), i, UF.sizeOfSet(i));
-  return 0;
+vector<vi > UnionFind::setFobiaArrays(int fobias){
+  int currSet, set, pos;
+  vi::iterator it;
+  fobiaArrays.resize(numDisjointSets());
+  for (int i = 0; i < numDisjointSets(); ++i) {
+    fobiaArrays[i].resize(fobias);
+  }
+  cout << "espacio asignado "<<fobias << endl;
+  currSet = set = findSet(0);
+  pos = 0;
+  fsets.push_back(set);
+  cout << fsets[0]<< " "<< currSet << endl;
+  for (size_t j = 0; j < p.size(); j++) {
+    set = findSet(j);
+    cout << "set "<< set << " para "<<j<< " pos "<<pos<<endl;
+    if (currSet != set) {
+      cout << "BLEH"<<endl;
+      currSet = set;
+      it = find(fsets.begin(),fsets.end(),set);
+      if(it!=fsets.end()){
+        pos = it - fsets.end();
+      } else {
+        fsets.push_back(set);
+        pos = fsets.size()-1;
+      }
+    }
+    fobiaArrays[pos][(arreglo[j].fobia)]++;
+  }
+  return fobiaArrays;
 }
-*/

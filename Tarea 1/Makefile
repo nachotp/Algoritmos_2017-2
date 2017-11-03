@@ -19,7 +19,7 @@ unionfind.o: unionfind.cpp
 
 union: unionmain.cpp unionfind.o
 	g++ -std=c++11 unionmain.cpp unionfind.o -o exe
-	time ./exe < t1-test/big-input.dat
+	#time ./exe < t1-test/big-input.dat > out.dat
 
 clean:
 	rm -f *.o
