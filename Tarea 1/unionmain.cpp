@@ -4,15 +4,15 @@
 #include <map>
 //#include <utility>
 
-#include "graph.h"
+#include "unionfind.h"
 using namespace std;
 
 
 int main( int argc, char **argv) {
     unsigned int numPersonas, numArcos, fobia, p1, p2;
     cin >> numPersonas;
-    grafo graph(numPersonas);
-    cout << "grafo inicializado" << endl;
+    UnionFind UF(numPersonas);
+    cout << "Union find inicializado" << endl;
     for(size_t i = 0; i < numPersonas; ++i){
         cin >> fobia;
         graph.addPersona(i, persona(fobia));

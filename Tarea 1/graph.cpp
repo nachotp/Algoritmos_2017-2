@@ -73,7 +73,7 @@ vector< vector<persona> > grafo::dfs(){
     cout << "desmarcado todo"<< endl;
     //if(x == required) return;
     for (size_t person = 0; person < arreglo.size(); person++){
-        
+
         if (!arreglo[person].visitado()){
             comunidades.push_back(vector<persona>());
             cout << "Depth first Search starting for community ";
@@ -95,7 +95,43 @@ vector< vector<persona> > grafo::dfs(){
             cout<<endl;
             ++comunidad;
         }
-        
+
+    }
+    return comunidades;
+}
+
+vector< vector<persona> > grafo::dfs2(){
+    vector< vector<persona> > comunidades;
+    stack<int> s;
+    int i;
+    int comunidad = 0;
+    desmarcar();
+    cout << "desmarcado todo"<< endl;
+    //if(x == required) return;
+    for (size_t person = 0; person < arreglo.size(); person++){
+        if (!arreglo[person].visitado()){
+            comunidades.push_back(vector<persona>());
+            cout << "Depth first Search starting for community ";
+            cout << comunidad << ":" << endl;
+            s.push(person);
+            arreglo[person].visitar();
+            comunidades[comunidad].push_back(arreglo[person]);
+            while(!s.empty()){
+              int k = s.top();
+              s.pop();
+              cout<<k+1<<" ";
+              for (int p : lista_ady[person]){
+                if (!arreglo[p].visitado()){
+                  s.push(p);
+                  arreglo[p].visitar();
+                  comunidades[comunidad].push_back(arreglo[p]);
+                }
+              }
+            }
+            cout<<endl;
+            ++comunidad;
+        }
+
     }
     return comunidades;
 }

@@ -23,12 +23,13 @@ class grafo {
 public:
     grafo(int n);
     vector< vector<persona> > dfs();
+    vector< vector<persona> > dfs2();
     void addPersona(int pos, persona person);
     void crearArco(int p1, int p2);
     void printGrafo();
     void desmarcar();
     bool hayArco(int p1, int p2);
-    
+
 };
 
 #endif
