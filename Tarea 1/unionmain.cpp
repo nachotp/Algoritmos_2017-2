@@ -15,23 +15,21 @@ int main( int argc, char **argv) {
     cout << "Union find inicializado" << endl;
     for(size_t i = 0; i < numPersonas; ++i){
         cin >> fobia;
-        graph.addPersona(i, persona(fobia));
+        UF.addPersona(i, persona(fobia));
     }
     cin >> numArcos;
     cout << "Personas creadas" << endl;
     for(size_t i = 0; i < numArcos; ++i){
         cin >> p1 >> p2;
-        graph.crearArco(p1-1, p2-1);
+        UF.unionSet(p1-1, p2-1);
     }
 
     cout << "Arcos creados" << endl;
 
     int fobiaMax, max;
-    //graph.printGrafo();
-    vector< vector<persona> > commies = graph.dfs2();
 
-    cout << "Comunidades creadas" << endl;
-    map<int, int> fobiaMap;
+    cout << UF.numDisjointSets() << " comunidades creadas" << endl;
+    /*map<int, int> fobiaMap;
     persona tp(-1);
     cout << commies.size() << endl;
     for(size_t comu = 0; comu < commies.size(); ++comu){
@@ -52,5 +50,5 @@ int main( int argc, char **argv) {
         }
         fobiaMap.clear();
         cout << fobiaMax << endl;
-    }
+    }*/
 }

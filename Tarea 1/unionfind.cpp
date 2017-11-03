@@ -14,10 +14,15 @@ persona::persona(){
 
 UnionFind::UnionFind(int N) {
   setSize.assign(N, 1);
-  arreglo.resize(n);
-  numSets = N; rank.assign(N, 0);
+  arreglo.resize(N);
+  numSets = N;
+  rank.assign(N, 0);
   p.assign(N, 0);
   for (int i = 0; i < N; i++) p[i] = i;
+}
+
+void UnionFind::addPersona(int pos, persona person){
+    arreglo[pos]= person;
 }
 
 int UnionFind::findSet(int i) {
@@ -45,11 +50,11 @@ void UnionFind::unionSet(int i, int j) {
   }
 }
 
-int numDisjointSets() {
+int UnionFind::numDisjointSets() {
   return numSets;
 }
 
-int sizeOfSet(int i) {
+int UnionFind::sizeOfSet(int i) {
   return setSize[findSet(i)];
 }
 

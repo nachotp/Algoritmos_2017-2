@@ -16,10 +16,12 @@ public:
 
 class UnionFind {                                              // OOP style
 private:
-  vi p, rank, setSize, arreglo;                       // remember: vi is vector<int>
+  vi p, rank, setSize;                       // remember: vi is vector<int>
+  vector<persona> arreglo;
   int numSets;
 public:
   UnionFind(int N);
+  void addPersona(int pos, persona person);
   int findSet(int i);
   bool isSameSet(int i, int j);
   void unionSet(int i, int j);

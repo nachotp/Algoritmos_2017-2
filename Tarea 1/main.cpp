@@ -28,12 +28,14 @@ int main( int argc, char **argv) {
 
     int fobiaMax, max;
     //graph.printGrafo();
-    vector< vector<persona> > commies = graph.dfs2();
+    vector< vector<persona> > commies = graph.dfs();
 
     cout << "Comunidades creadas" << endl;
+    cout << commies.size() << endl;
+    /*
     map<int, int> fobiaMap;
     persona tp(-1);
-    cout << commies.size() << endl;
+
     for(size_t comu = 0; comu < commies.size(); ++comu){
         fobiaMax = -1;
         max = -1;
@@ -52,5 +54,5 @@ int main( int argc, char **argv) {
         }
         fobiaMap.clear();
         cout << fobiaMax << endl;
-    }
+    }*/
 }
