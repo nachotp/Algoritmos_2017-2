@@ -28,7 +28,7 @@ public:
   void unionSet(int i, int j);
   int numDisjointSets();
   int sizeOfSet(int i);
-  vector<vi > setFobiaArrays(int fobias);
+  void setFobiaArrays(int fobias);
 };
 
 #endif

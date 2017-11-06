@@ -23,7 +23,8 @@ UnionFind::UnionFind(int N) {
 }
 
 void UnionFind::addPersona(int pos, persona person){
-    arreglo[pos]= person;
+    arreglo[pos] = person;
+
 }
 
 int UnionFind::findSet(int i) {
@@ -59,33 +60,46 @@ int UnionFind::sizeOfSet(int i) {
   return setSize[findSet(i)];
 }
 
-vector<vi > UnionFind::setFobiaArrays(int fobias){
+void UnionFind::setFobiaArrays(int fobias){
   int currSet, set, pos;
   vi::iterator it;
   fobiaArrays.resize(numDisjointSets());
   for (int i = 0; i < numDisjointSets(); ++i) {
-    fobiaArrays[i].resize(fobias);
+    fobiaArrays[i].assign(fobias,0);
   }
-  cout << "espacio asignado "<<fobias << endl;
-  currSet = set = findSet(0);
+  currSet = findSet(0);
+  set = currSet;
   pos = 0;
   fsets.push_back(set);
-  cout << fsets[0]<< " "<< currSet << endl;
   for (size_t j = 0; j < p.size(); j++) {
     set = findSet(j);
-    cout << "set "<< set << " para "<<j<< " pos "<<pos<<endl;
     if (currSet != set) {
-      cout << "BLEH"<<endl;
       currSet = set;
       it = find(fsets.begin(),fsets.end(),set);
       if(it!=fsets.end()){
-        pos = it - fsets.end();
+        pos = distance(fsets.begin(), it);
       } else {
         fsets.push_back(set);
         pos = fsets.size()-1;
       }
     }
-    fobiaArrays[pos][(arreglo[j].fobia)]++;
+    fobiaArrays[pos][(arreglo[j].fobia)-1]++;
   }
-  return fobiaArrays;
+  /*for (vector<int> com : fobiaArrays){
+    for (int per : com){
+      cout << per << '\t';
+    }
+    cout << endl;
+  }*/
+  for (vector<int> com : fobiaArrays){
+    int fobiaMax = 0;
+    int pos = 0;
+    for(size_t i = 0; i < com.size(); ++i){
+        if (com[i] > fobiaMax){
+            fobiaMax = com[i];
+            pos = i;
+        }
+    }
+    cout << pos+1 << endl;
+  }
 }
