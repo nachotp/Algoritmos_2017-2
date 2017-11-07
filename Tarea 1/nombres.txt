@@ -8,7 +8,7 @@ Programó: métodos relacionados a conjuntos disjuntos
 
 Ignacio Tampe Palma
     201573514-K
-Programó: setFobiaArrays (función para la obtención de la fobia mas común) y métodos de la estructura UnionFind
+Programó: setFobiaArrays (función para la obtención de la fobia mas común) y métodos de la clase UnionFind
 
 Franco Zalavari Palma
     201573501-8
