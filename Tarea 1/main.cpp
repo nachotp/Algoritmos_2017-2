@@ -3,7 +3,6 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-//#include <utility>
 
 #include "unionfind.h"
 using namespace std;
@@ -25,7 +24,6 @@ int main( int argc, char **argv) {
         UF.unionSet(p1-1, p2-1);
     }
 
-    //int max;
     cout << UF.numDisjointSets() << endl;
     UF.setFobiaArrays(fobiaMax);
 }

@@ -39,7 +39,6 @@ void UnionFind::unionSet(int i, int j) {
   if (!isSameSet(i, j)) {
     numSets--;
     int x = findSet(i), y = findSet(j);
-  // rank is used to keep the tree short
     if (rank[x] > rank[y]) {
       p[y] = x;
       setSize[x] += setSize[y];
@@ -85,12 +84,7 @@ void UnionFind::setFobiaArrays(int fobias){
     }
     fobiaArrays[pos][(arreglo[j].fobia)-1]++;
   }
-  /*for (vector<int> com : fobiaArrays){
-    for (int per : com){
-      cout << per << '\t';
-    }
-    cout << endl;
-  }*/
+
   for (vector<int> com : fobiaArrays){
     int fobiaMax = 0;
     int pos = 0;

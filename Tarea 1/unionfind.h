@@ -14,9 +14,9 @@ public:
     persona();
 };
 
-class UnionFind {                                              // OOP style
+class UnionFind {
 private:
-  vi p, rank, setSize, fsets;                       // remember: vi is vector<int>
+  vi p, rank, setSize, fsets;
   vector <vi > fobiaArrays;
   vector<persona> arreglo;
   int numSets;
