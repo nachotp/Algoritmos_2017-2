@@ -1,11 +1,14 @@
 all = Tarea2
 
-Tarea2: main.o
-	g++ -std=c++11 main.o -o exe
+Tarea2: main.o parser.o
+	g++ -std=c++11 main.o parser.o -o exe
 	./exe < input.txt
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp -Wall
+
+parser.o: parser.cpp
+	g++ -std=c++11 -c parser.cpp -Wall
 
 clean:
 	rm -f *.o
