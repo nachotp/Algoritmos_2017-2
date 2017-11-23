@@ -15,11 +15,14 @@ public:
 
 class parser {
 private:
-  vector<punto> posArray;
-  int edifAnterior[3];
-  punto tempPunto;
+
 public:
   parser();
+  vector<punto> interpretar(posicion);
+  vector<punto> merge(vector<punto> ladoIzq, vector<punto> ladoDer);
+  vector<punto> mergeContours(vector<posicion> posiciones);
+  vector<punto> mergeContours(vector<posicion> posiciones, int izq, int der);
+
 };
 
 

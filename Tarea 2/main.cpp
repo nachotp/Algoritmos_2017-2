@@ -6,6 +6,7 @@ using namespace std;
 
 int main(int argc, char **argv) {
   unsigned int numEdificios, numDrones, X, Y;
+  parser traductor;
   int  L, H, R;
   ios::sync_with_stdio(false);
   vector<posicion> posiciones;
@@ -15,9 +16,7 @@ int main(int argc, char **argv) {
     posiciones.push_back({L,H,R});
   }
   cout << "weas leidas" << endl;
-  for (posicion b : posiciones)
-    cout << b[0] << " " << b[1] << " " << b[2] << endl;
-  // hacer magia con los edificios
+  traductor.mergeContours(posiciones);
 
   cin >> numDrones;
   for (size_t i = 0; i < numDrones; ++i) {
