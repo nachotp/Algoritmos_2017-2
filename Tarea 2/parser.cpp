@@ -79,6 +79,12 @@ void parser::funcion(vector<punto> arreglo1, vector<punto> arreglo2, int i, int 
       }
     }
 
+    else if(punto3.x > punto2.x){
+      // llamar funcion con los arreglos en el mismo orden pero con el indice i+1
+    }
+
+
+
 
   }
 }
