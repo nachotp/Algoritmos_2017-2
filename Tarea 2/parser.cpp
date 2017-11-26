@@ -28,21 +28,68 @@ vector<punto> parser::merge(vector<punto> ladoIzq, vector<punto> ladoDer){
   cout << "MERGING"<< endl;
   unsigned int izq = 0, der = 0;
   vector<punto> unionContour;
+  punto segInit, segFin, ptoDer, ptoDerSig;
+  segInit = ladoIzq[izq];
+  segFin = ladoIzq[izq+1];
+  ptoDer = ladoDer[der];
+  ptoDerSig = ladoDer[der+1];
+  if (if segInit.x < ptoDer.x && segInit.s != ptoDer.s) {
+    unionContour.push_back(segInit);
+  }
   while (izq < ladoIzq.size()-1 && der < ladoDer.size()-1) {
-    if (ladoIzq[izq].x < ladoDer[der].x) {
-      unionContour.push_back(ladoIzq[izq]);
-      if(ladoDer[der] < ladoIzq[izq+1]){
-        unionContour.push_back(ladoDer[der]);
-      }
-      else if(ladoDer[der] == ladoIzq[izq+1]){
-        unionContour.push_back(ladoDer[der+1]);
-      }
-      else{
-        unionContour.push_back(ladoDer[der]);
-        unionContour.push_back(ladoDer[der+1]);
-      }
+    segInit = ladoIzq[izq];
+    segFin = ladoIzq[izq+1];
+    ptoDer = ladoDer[der];
+    ptoDerSig = ladoDer[der+1];
+    if (segInit.x <= ptoDer.x && ) {
+      /* code */
+    } else if (/* condition */) {
+      /* code */
+    } else {
+      /* code */
     }
   }
+}
+  //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////
+
+void parser::funcion(vector<punto> arreglo1, vector<punto> arreglo2, int i, int j, vector<punto> &finalarray){
+  punto;
+  while(i < arreglo1.size()-1 && j < arreglo2.size()-1){
+    punto1 = arreglo1[i];
+    punto2 = arreglo1[i+1];
+    punto3 = arreglo2[j];
+    punto4 = arreglo2[j+1];
+
+    if(punto1.x < punto3.x  < punto2.x && punto1.s > punto3.s && punto3.s > punto2.s){
+      if(punto2.x < punto4.x){
+        newpto = (punto2.x, punto3.h);
+        add(newpto);
+      }
+    }
+    else if(punto1.x <= punto3.x < punto2.x && punto1.s < punto3.s){
+      add(punto3); //ojo, quizas hay que borrar el pto que se pone al inicio porque se "sobreescribe"
+      if(punto4.x < punto2.x && punto4.s < punto1.s){
+        newpto = (punto4.x, punto1.h);
+        add(newpto);
+      }
+    }
+
+
+  }
+}
+  //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////
+          //////////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////////
+              //////////////////////////////////////////////////////////////////
+                //////////////////////////////////////////////////////////////////
 
   while (izq < ladoIzq.size()) {
     unionContour.push_back(ladoIzq[izq]);
