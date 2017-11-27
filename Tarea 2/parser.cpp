@@ -58,34 +58,38 @@ vector<punto> parser::merge(vector<punto> ladoIzq, vector<punto> ladoDer){
             //////////////////////////////////////////////////////////////////
 
 void parser::funcion(vector<punto> arreglo1, vector<punto> arreglo2, int i, int j, vector<punto> &finalarray){
-  punto;
-  while(i < arreglo1.size()-1 && j < arreglo2.size()-1){
-    punto1 = arreglo1[i];
-    punto2 = arreglo1[i+1];
-    punto3 = arreglo2[j];
-    punto4 = arreglo2[j+1];
+  punto punto1, punto2, punto3, punto4, newpto;
+  punto1 = arreglo1[i];
+  punto2 = arreglo1[i+1];
+  punto3 = arreglo2[j];
+  punto4 = arreglo2[j+1];
 
-    if(punto1.x < punto3.x  < punto2.x && punto1.s > punto3.s && punto3.s > punto2.s){
-      if(punto2.x < punto4.x){
-        newpto = (punto2.x, punto3.h);
-        add(newpto);
+  if(punto1.x < punto3.x && punto3.x <= punto2.x && punto1.s > punto3.s && punto3.s >= punto2.s){
+    if(punto2.x < punto4.x){
+      newpto = punto(punto2.x, punto3.h);
+      finalarray.push_back(newpto);
+    }
+    else if(punto4.x < punto2.x){}
+  }
+  else if(punto1.x <= punto3.x && punto3.x < punto2.x && punto1.s < punto3.s){
+    if(punto3.x == punto1.x && punto3.s >= punto1.s){ //condicion donde el punto3 esta en igual x que punto 1 pero mas alto, por lo tanto lo reemplaza
+    sacar(punto1)//ultimo punto agregado
+    }
+    finalarray.push_back(punto3); //ojo, quizas hay que borrar el pto que se pone al inicio porque se "sobreescribe"
+    if(punto4.x < punto2.x){
+      if(punto4.s <= punto1.s){
+        newpto = punto(punto4.x, punto1.s);
+        finalarray.push_back(newpto);
+      }
+      else if(punto4.s > punto1.s){
+          funcion(arreglo1, arreglo2, i, j++, finalarray);
       }
     }
-    else if(punto1.x <= punto3.x < punto2.x && punto1.s < punto3.s){
-      add(punto3); //ojo, quizas hay que borrar el pto que se pone al inicio porque se "sobreescribe"
-      if(punto4.x < punto2.x && punto4.s < punto1.s){
-        newpto = (punto4.x, punto1.h);
-        add(newpto);
-      }
-    }
+  }
 
-    else if(punto3.x > punto2.x){
-      // llamar funcion con los arreglos en el mismo orden pero con el indice i+1
-    }
-
-
-
-
+  else if(punto3.x > punto2.x){
+    funcion(arreglo1, arreglo2, i++, j, finalarray);
+    // llamar funcion con los arreglos en el mismo orden pero con el indice i+1
   }
 }
   //////////////////////////////////////////////////////////////////
