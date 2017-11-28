@@ -16,7 +16,6 @@ int main(int argc, char **argv) {
     cin >> L >> H >> R;
     posiciones.push_back({L,H,R});
   }
-  cout << "weas leidas" << endl;
   contorno = traductor.mergeContours(posiciones);
 
   cout << contorno.size() << endl;

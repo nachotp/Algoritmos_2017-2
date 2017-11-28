@@ -39,11 +39,12 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
   punto punto_red, punto_blue;
   punto newpto;
   vector<punto> finalarray;
+
   while(i < arreglo1.size() && j < arreglo2.size()){
     punto_red = arreglo1[i];
     punto_blue = arreglo2[j];
 
-    if(punto_red.x < punto_blue.x && last_blue.s < punto_red.s){
+    if(punto_red.x < punto_blue.x && last_blue.s <= punto_red.s){
       finalarray.push_back(punto_red);
       last_red = punto_red;
       i++;
@@ -82,12 +83,15 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
     //last_blue = punto_blue;
   }
   //una vez que se acaba uno de los arreglos empiezo a agregar todo el resto de puntos que quedaron
-  for(i=i; i<arreglo1.size(); i++){
+  while(i<arreglo1.size()){
     finalarray.push_back(arreglo1[i]);
+    i++;
   }
-  for(j=j; j<arreglo2.size(); j++){
-    finalarray.push_back(arreglo2[i]);
+  while(j<arreglo2.size()){
+    finalarray.push_back(arreglo2[j]);
+    j++;
   }
+
   return finalarray;
 }
 
