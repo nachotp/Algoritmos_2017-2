@@ -24,32 +24,6 @@ vector<punto> parser::interpretar(posicion edif){
   return contorno;
 }
 
-vector<punto> parser::merge(vector<punto> ladoIzq, vector<punto> ladoDer){
-  cout << "MERGING"<< endl;
-  unsigned int izq = 0, der = 0;
-  vector<punto> unionContour;
-  punto segInit, segFin, ptoDer, ptoDerSig;
-  segInit = ladoIzq[izq];
-  segFin = ladoIzq[izq+1];
-  ptoDer = ladoDer[der];
-  ptoDerSig = ladoDer[der+1];
-  if (if segInit.x < ptoDer.x && segInit.s != ptoDer.s) {
-    unionContour.push_back(segInit);
-  }
-  while (izq < ladoIzq.size()-1 && der < ladoDer.size()-1) {
-    segInit = ladoIzq[izq];
-    segFin = ladoIzq[izq+1];
-    ptoDer = ladoDer[der];
-    ptoDerSig = ladoDer[der+1];
-    if (segInit.x <= ptoDer.x && ) {
-      /* code */
-    } else if (/* condition */) {
-      /* code */
-    } else {
-      /* code */
-    }
-  }
-}
   //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////
@@ -57,13 +31,14 @@ vector<punto> parser::merge(vector<punto> ladoIzq, vector<punto> ladoDer){
           //////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////
 
-void parser::function(vector<punto> arreglo1, vector<punto> arreglo2, vector<punto> finalarray){
-  int i = 0;
-  int j = 0;
+vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
+  unsigned int i = 0;
+  unsigned int j = 0;
   punto last_red = punto(0,0);
   punto last_blue = punto(0,0);
   punto punto_red, punto_blue;
   punto newpto;
+  vector<punto> finalarray;
   while(i < arreglo1.size() && j < arreglo2.size()){
     punto_red = arreglo1[i];
     punto_blue = arreglo2[j];
@@ -82,7 +57,7 @@ void parser::function(vector<punto> arreglo1, vector<punto> arreglo2, vector<pun
       }
       else{
         finalarray.push_back(punto_blue);
-        last_blue = punto_blue
+        last_blue = punto_blue;
       }
       j++;
     }
@@ -90,7 +65,7 @@ void parser::function(vector<punto> arreglo1, vector<punto> arreglo2, vector<pun
     else if(punto_red.x == punto_blue.x){
       if(punto_red.s <= punto_blue.s){
         finalarray.push_back(punto_blue);
-        last_blue = punto_blue
+        last_blue = punto_blue;
       }
       else{
         finalarray.push_back(punto_red);
@@ -100,19 +75,20 @@ void parser::function(vector<punto> arreglo1, vector<punto> arreglo2, vector<pun
       i++;
     }
     else{
-      i++
+      i++;
       last_red = punto_red;
     }
 
     //last_blue = punto_blue;
   }
   //una vez que se acaba uno de los arreglos empiezo a agregar todo el resto de puntos que quedaron
-  for(i; i<arreglo1.size(); i++){
-    finalarray.push_back(arreglo[i]);
+  for(i=i; i<arreglo1.size(); i++){
+    finalarray.push_back(arreglo1[i]);
   }
-  for(j; j<arreglo2.size(); j++){
+  for(j=j; j<arreglo2.size(); j++){
     finalarray.push_back(arreglo2[i]);
   }
+  return finalarray;
 }
 
   //////////////////////////////////////////////////////////////////
@@ -124,17 +100,6 @@ void parser::function(vector<punto> arreglo1, vector<punto> arreglo2, vector<pun
               //////////////////////////////////////////////////////////////////
                 //////////////////////////////////////////////////////////////////
 
-  while (izq < ladoIzq.size()) {
-    unionContour.push_back(ladoIzq[izq]);
-    izq++;
-  }
-  while (der < ladoDer.size()) {
-    unionContour.push_back(ladoDer[der]);
-    der++;
-  }
-
-  return unionContour;
-}
 
 vector<punto> parser::mergeContours(vector<posicion> posiciones){
   int izq = 0;
