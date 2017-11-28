@@ -3,7 +3,7 @@
 #include "parser.h"
 using namespace std;
 
-punto::punto(int xi, int si){
+punto::punto(unsigned long int xi,unsigned long int si){
   x = xi;
   s = si;
 }
@@ -45,16 +45,23 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
     punto_blue = arreglo2[j];
 
     if(punto_red.x < punto_blue.x && last_blue.s <= punto_red.s){
-      finalarray.push_back(punto_red);
-      last_red = punto_red;
+      if(last_blue.s > punto_red.s){
+        newpto = punto(punto_red.x, last_blue.s);
+        finalarray.push_back(newpto);
+      }
+      else{
+        finalarray.push_back(punto_red);
+        last_red = punto_red;
+      }
       i++;
     }
 
 
     else if(punto_blue.x < punto_red.x){
-      if(last_red.s >= punto_blue.s){
+      if(last_red.s > punto_blue.s){
         newpto = punto(punto_blue.x, last_red.s);
         finalarray.push_back(newpto);
+        last_blue = punto_blue;
       }
       else{
         finalarray.push_back(punto_blue);
@@ -64,7 +71,7 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
     }
 
     else if(punto_red.x == punto_blue.x){
-      if(punto_red.s <= punto_blue.s){
+      if(punto_red.s <= punto_blue.s && punto_blue.s != finalarray.back().s){
         finalarray.push_back(punto_blue);
         last_blue = punto_blue;
       }
@@ -84,11 +91,15 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
   }
   //una vez que se acaba uno de los arreglos empiezo a agregar todo el resto de puntos que quedaron
   while(i<arreglo1.size()){
-    finalarray.push_back(arreglo1[i]);
+    if(arreglo1[i].s != finalarray.back().s){
+      finalarray.push_back(arreglo1[i]);
+    }
     i++;
   }
   while(j<arreglo2.size()){
-    finalarray.push_back(arreglo2[j]);
+    if(arreglo2[j].s != finalarray.back().s){
+      finalarray.push_back(arreglo2[j]);
+    }
     j++;
   }
 

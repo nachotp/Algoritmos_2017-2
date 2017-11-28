@@ -4,12 +4,12 @@
 #include <vector>
 using namespace std;
 
-typedef array<int, 3> posicion;
+typedef array<unsigned long int, 3> posicion;
 
 class punto {
 public:
-  int x, s;
-  punto(int xi, int si);
+  unsigned long int x, s;
+  punto(unsigned long int xi, unsigned long int si);
   punto();
 };
 

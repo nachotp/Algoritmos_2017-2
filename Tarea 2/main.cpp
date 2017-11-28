@@ -5,10 +5,11 @@ using namespace std;
 
 
 int main(int argc, char **argv) {
-  unsigned int numEdificios, numDrones, X, Y;
+  unsigned int numEdificios, numDrones;
+  unsigned long int X, Y;
   parser traductor;
   vector<punto> contorno;
-  int  L, H, R;
+  unsigned long int L, H, R;
   ios::sync_with_stdio(false);
   vector<posicion> posiciones;
   cin >> numEdificios;
