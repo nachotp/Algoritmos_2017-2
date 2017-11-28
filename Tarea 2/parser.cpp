@@ -57,41 +57,64 @@ vector<punto> parser::merge(vector<punto> ladoIzq, vector<punto> ladoDer){
           //////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////
 
-void parser::funcion(vector<punto> arreglo1, vector<punto> arreglo2, int i, int j, vector<punto> &finalarray){
-  punto punto1, punto2, punto3, punto4, newpto;
-  punto1 = arreglo1[i];
-  punto2 = arreglo1[i+1];
-  punto3 = arreglo2[j];
-  punto4 = arreglo2[j+1];
+void parser::function(vector<punto> arreglo1, vector<punto> arreglo2, vector<punto> finalarray){
+  int i = 0;
+  int j = 0;
+  punto last_red = punto(0,0);
+  punto last_blue = punto(0,0);
+  punto punto_red, punto_blue;
+  punto newpto;
+  while(i < arreglo1.size() && j < arreglo2.size()){
+    punto_red = arreglo1[i];
+    punto_blue = arreglo2[j];
 
-  if(punto1.x < punto3.x && punto3.x <= punto2.x && punto1.s > punto3.s && punto3.s >= punto2.s){
-    if(punto2.x < punto4.x){
-      newpto = punto(punto2.x, punto3.h);
-      finalarray.push_back(newpto);
+    if(punto_red.x < punto_blue.x && last_blue.s < punto_red.s){
+      finalarray.push_back(punto_red);
+      last_red = punto_red;
+      i++;
     }
-    else if(punto4.x < punto2.x){}
-  }
-  else if(punto1.x <= punto3.x && punto3.x < punto2.x && punto1.s < punto3.s){
-    if(punto3.x == punto1.x && punto3.s >= punto1.s){ //condicion donde el punto3 esta en igual x que punto 1 pero mas alto, por lo tanto lo reemplaza
-    sacar(punto1)//ultimo punto agregado
-    }
-    finalarray.push_back(punto3); //ojo, quizas hay que borrar el pto que se pone al inicio porque se "sobreescribe"
-    if(punto4.x < punto2.x){
-      if(punto4.s <= punto1.s){
-        newpto = punto(punto4.x, punto1.s);
+
+
+    else if(punto_blue.x < punto_red.x){
+      if(last_red.s >= punto_blue.s){
+        newpto = punto(punto_blue.x, last_red.s);
         finalarray.push_back(newpto);
       }
-      else if(punto4.s > punto1.s){
-          funcion(arreglo1, arreglo2, i, j++, finalarray);
+      else{
+        finalarray.push_back(punto_blue);
+        last_blue = punto_blue
       }
+      j++;
     }
-  }
 
-  else if(punto3.x > punto2.x){
-    funcion(arreglo1, arreglo2, i++, j, finalarray);
-    // llamar funcion con los arreglos en el mismo orden pero con el indice i+1
+    else if(punto_red.x == punto_blue.x){
+      if(punto_red.s <= punto_blue.s){
+        finalarray.push_back(punto_blue);
+        last_blue = punto_blue
+      }
+      else{
+        finalarray.push_back(punto_red);
+        last_red = punto_red;
+      }
+      j++;
+      i++;
+    }
+    else{
+      i++
+      last_red = punto_red;
+    }
+
+    //last_blue = punto_blue;
+  }
+  //una vez que se acaba uno de los arreglos empiezo a agregar todo el resto de puntos que quedaron
+  for(i; i<arreglo1.size(); i++){
+    finalarray.push_back(arreglo[i]);
+  }
+  for(j; j<arreglo2.size(); j++){
+    finalarray.push_back(arreglo2[i]);
   }
 }
+
   //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////
