@@ -9,7 +9,7 @@ int main(int argc, char **argv) {
   unsigned long int X, Y;
   parser traductor;
   vector<punto> contorno;
-  bool prueba;
+  string prueba;
   unsigned long int  L, H, R;
   ios::sync_with_stdio(false);
   vector<posicion> posiciones;
@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
   }
 
   cin >> numDrones;
+  cout << numDrones << endl;
   for (size_t i = 0; i < numDrones; ++i) {
     cin >> X >> Y;
     prueba = traductor.colision(X, Y, contorno, contorno.size());
