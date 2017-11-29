@@ -24,6 +24,33 @@ vector<punto> parser::interpretar(posicion edif){
   return contorno;
 }
 
+bool parser::colision(unsigned long int x,unsigned long int y, vector<punto> contornos, int tamanio){
+    int izq = 0;
+    int mid;
+    int der = tamanio - 1;
+    punto posicion = punto(x,y);
+    while (izq <= der) {
+        mid = (izq + der) / 2;
+
+        if (posicion.x == contornos[mid].x && posicion.s <= contornos[mid].s) {
+          return true;
+        }
+        else {
+            if (contornos[mid].x > posicion.x) {
+                der = mid - 1;
+            } else {
+                izq = mid + 1;
+            }
+        }
+    }
+   if(posicion.x >= contornos[mid].x && posicion.x <= contornos[izq].x && posicion.s >= contornos[mid].s && posicion.s <= contornos[izq].s)return true;
+   /*cout << "DRONE "<< posicion.x << " " << posicion.s << endl;
+   cout << "IZQ "<< contornos[izq].x << " " << contornos[izq].s << endl;
+   cout << "MID "<< contornos[mid].x << " " << contornos[mid].s << endl;
+   cout << "DER "<< contornos[der].x << " " << contornos[der].s << endl;*/
+   return false;
+}
+
   //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////
