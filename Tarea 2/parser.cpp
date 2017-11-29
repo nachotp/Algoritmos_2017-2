@@ -30,7 +30,6 @@ vector<punto> parser::interpretar(posicion edif){
         //////////////////////////////////////////////////////////////////
           //////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////
-
 vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
   unsigned int i = 0;
   unsigned int j = 0;
@@ -44,78 +43,74 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
     punto_red = arreglo1[i];
     punto_blue = arreglo2[j];
 
-    if(punto_red.x < punto_blue.x && last_blue.s < punto_red.s){
-      if(last_blue.s > punto_red.s){
+    if(punto_red.x < punto_blue.x){
+      if (last_blue.s > punto_red.s && last_red.s > last_blue.s){
         newpto = punto(punto_red.x, last_blue.s);
-        if(newpto.s != finalarray.back().s){
-          finalarray.push_back(newpto);
-          last_red = punto_red;
-        }
+        finalarray.push_back(newpto);
+        last_red = punto_red;
+        i++;
+      }
+      else if(last_blue.s > punto_red.s && last_red.s <= last_blue.s){
+        last_red = punto_red;
+        i++;
       }
       else{
-        if(punto_red.s != last_blue.s){
-          finalarray.push_back(punto_red);
-          last_red = punto_red;
-        }
+        finalarray.push_back(punto_red);
+        last_red = punto_red;
+        i++;
       }
-      i++;
+
     }
 
 
     else if(punto_blue.x < punto_red.x){
-      if(last_red.s > punto_blue.s){
+      if(last_red.s > punto_blue.s && last_blue.s > last_red.s){
         newpto = punto(punto_blue.x, last_red.s);
-        if(newpto.s != finalarray.back().s){
-          finalarray.push_back(newpto);
-          last_blue = punto_blue;
-        }
-
+        finalarray.push_back(newpto);
+        last_blue = punto_blue;
+        j++;
       }
-      else if(punto_blue.s != last_red.s){
+      else if(punto_blue.s > last_red.s){
         finalarray.push_back(punto_blue);
         last_blue = punto_blue;
+        j++;
       }
-      j++;
+      else if(last_red.s > punto_blue.s && last_blue.s <= last_red.s){
+        last_blue = punto_blue;
+        j++;
+      }
     }
 
     else if(punto_red.x == punto_blue.x){
-      if(punto_red.s <= punto_blue.s && punto_blue.s != last_red.s){
-        finalarray.push_back(punto_blue);
-        //last_blue = punto_blue;
-      }
-      else if(punto_red.s > punto_blue.s && punto_red.s != last_blue.s){
+      if(punto_red.s >= punto_blue.s){
         finalarray.push_back(punto_red);
-        //last_red = punto_red;
+        last_red = punto_red;
+        last_blue = punto_blue;
+        i++;
+        j++;
       }
-      last_blue = punto_blue;
-      last_red = punto_red;
-      j++;
-      i++;
-    }
-    else{
-      i++;
-      last_red = punto_red;
+      else if(punto_blue.s > punto_red.s){
+        finalarray.push_back(punto_blue);
+        last_red = punto_red;
+        last_blue = punto_blue;
+        i++;
+        j++;
+      }
     }
 
-    //last_blue = punto_blue;
   }
   //una vez que se acaba uno de los arreglos empiezo a agregar todo el resto de puntos que quedaron
   while(i<arreglo1.size()){
-    if(arreglo1[i].s != last_blue.s){
-      finalarray.push_back(arreglo1[i]);
-    }
+    finalarray.push_back(arreglo1[i]);
     i++;
   }
   while(j<arreglo2.size()){
-    if(arreglo2[j].s != last_red.s){
-      finalarray.push_back(arreglo2[j]);
-    }
+    finalarray.push_back(arreglo2[j]);
     j++;
   }
 
   return finalarray;
 }
-
   //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////
