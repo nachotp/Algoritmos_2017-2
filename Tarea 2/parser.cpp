@@ -45,16 +45,24 @@ string parser::colision(unsigned long int x,unsigned long int y, vector<punto> &
             }
         }
     }
+    /*cout << "DRONE "<< posicion.x << " " << posicion.s << endl;
+    cout << "IZQ "<< contornos[izq].x << " " << contornos[izq].s << endl;
+    cout << "MID "<< contornos[mid].x << " " << contornos[mid].s << endl;
+    cout << "DER "<< contornos[der].x << " " << contornos[der].s << endl;*/
     if(contornos[der].x == contornos[mid].x && contornos[der].s == contornos[mid].s){
-      if(posicion.x >= contornos[mid].x && posicion.x <= contornos[izq].x && (posicion.s <= contornos[izq].s || posicion.s <= contornos[mid].s))return "true";
+      if(posicion.x >= contornos[mid].x && posicion.x <= contornos[izq].x){
+        if(contornos[mid].s == 0)return "false";
+        else if((posicion.s <= contornos[izq].s || posicion.s <= contornos[mid].s))return "true";
+      }
+
     }
    else if(contornos[izq].x == contornos[mid].x && contornos[izq].s == contornos[mid].s){
-     if(posicion.x >= contornos[der].x && posicion.x <= contornos[mid].x && (posicion.s <= contornos[mid].s || posicion.s <= contornos[der].s) )return "true";
-   }/*
-   cout << "DRONE "<< posicion.x << " " << posicion.s << endl;
-   cout << "IZQ "<< contornos[izq].x << " " << contornos[izq].s << endl;
-   cout << "MID "<< contornos[mid].x << " " << contornos[mid].s << endl;
-   cout << "DER "<< contornos[der].x << " " << contornos[der].s << endl;*/
+     if(posicion.x >= contornos[der].x && posicion.x <= contornos[mid].x){
+       if(contornos[der].s == 0)return "false";
+       else if((posicion.s <= contornos[mid].s || posicion.s <= contornos[der].s) )return "true";
+     }
+
+   }
    return "false";
 }
 
