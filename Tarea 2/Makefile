@@ -2,7 +2,7 @@ all = Tarea2
 
 Tarea2: main.o parser.o
 	g++ -std=c++11 main.o parser.o -o exe
-	./exe < files/files/i1000a.dat > out.dat
+	time ./exe < files/i10000000a.dat > out.dat
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp -Wall

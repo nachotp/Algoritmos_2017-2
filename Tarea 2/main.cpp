@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
   parser traductor;
   vector<punto> contorno;
   bool prueba;
-  int  L, H, R;
+  unsigned long int  L, H, R;
   ios::sync_with_stdio(false);
   vector<posicion> posiciones;
   cin >> numEdificios;

@@ -24,7 +24,7 @@ vector<punto> parser::interpretar(posicion edif){
   return contorno;
 }
 
-bool parser::colision(unsigned long int x,unsigned long int y, vector<punto> contornos, int tamanio){
+bool parser::colision(unsigned long int x,unsigned long int y, vector<punto> &contornos, int tamanio){
     int izq = 0;
     int mid;
     int der = tamanio - 1;
@@ -57,7 +57,7 @@ bool parser::colision(unsigned long int x,unsigned long int y, vector<punto> con
         //////////////////////////////////////////////////////////////////
           //////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////
-vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
+vector<punto>  parser::merge(vector<punto> &arreglo1, vector<punto> &arreglo2){
   unsigned int i = 0;
   unsigned int j = 0;
   punto last_red = punto(0,0);
@@ -86,7 +86,6 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
         last_red = punto_red;
         i++;
       }
-
     }
 
 
@@ -106,6 +105,16 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
         last_blue = punto_blue;
         j++;
       }
+      else if(last_red.s == punto_blue.s){
+        if(last_blue.s > last_red.s){
+          finalarray.push_back(punto_blue);
+        }
+        last_blue = punto_blue;
+        j++;
+      }
+      else{
+        cout << "huapo" << endl;
+      }
     }
 
     else if(punto_red.x == punto_blue.x){
@@ -116,15 +125,17 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
         i++;
         j++;
       }
-      else if(punto_blue.s > punto_red.s){
+      else if(punto_blue.s > punto_red.s && punto_blue.s != last_red.s){
         finalarray.push_back(punto_blue);
         last_red = punto_red;
         last_blue = punto_blue;
         i++;
         j++;
       }
+      else{
+        cout << "huapo2" << endl;
+      }
     }
-
   }
   //una vez que se acaba uno de los arreglos empiezo a agregar todo el resto de puntos que quedaron
   while(i<arreglo1.size()){
@@ -148,7 +159,7 @@ vector<punto>  parser::merge(vector<punto> arreglo1, vector<punto> arreglo2){
                 //////////////////////////////////////////////////////////////////
 
 
-vector<punto> parser::mergeContours(vector<posicion> posiciones){
+vector<punto> parser::mergeContours(vector<posicion> &posiciones){
   int izq = 0;
   int der = posiciones.size()-1;
   int mid = (izq+der)/2;
@@ -162,7 +173,7 @@ vector<punto> parser::mergeContours(vector<posicion> posiciones){
   return merge(ladoIzq, ladoDer);
 }
 
-vector<punto> parser::mergeContours(vector<posicion> posiciones, int izq, int der){
+vector<punto> parser::mergeContours(vector<posicion> &posiciones, int izq, int der){
   int mid = (izq+der)/2;
   vector<punto> ladoIzq, ladoDer, setFinal;
   if (izq != der){
