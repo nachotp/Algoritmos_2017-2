@@ -22,6 +22,7 @@ public:
   vector<punto> merge(vector<punto> arreglo1, vector<punto> arreglo2);
   vector<punto> mergeContours(vector<posicion> posiciones);
   vector<punto> mergeContours(vector<posicion> posiciones, int izq, int der);
+  bool colision(unsigned long int x,unsigned long int y, vector<punto> contornos, int tamanio);
 
 };
 
