@@ -127,9 +127,6 @@ vector<punto>  parser::merge(vector<punto> &arreglo1, vector<punto> &arreglo2){
         last_blue = punto_blue;
         j++;
       }
-      else{
-        cout << "huapo" << endl;
-      }
     }
 
     else if(punto_red.x == punto_blue.x){
@@ -146,9 +143,6 @@ vector<punto>  parser::merge(vector<punto> &arreglo1, vector<punto> &arreglo2){
         last_blue = punto_blue;
         i++;
         j++;
-      }
-      else{
-        cout << "huapo2" << endl;
       }
     }
   }
