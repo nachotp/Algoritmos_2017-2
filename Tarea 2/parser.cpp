@@ -28,7 +28,7 @@ vector<punto> parser::interpretar(posicion edif){
 
 string parser::colision(unsigned long int x,unsigned long int y, vector<punto> &contornos, int tamanio){
     int izq = 0;
-    int mid;
+    int mid = 0;
     int der = tamanio - 1;
     punto posicion = punto(x,y);
     while (izq <= der) {

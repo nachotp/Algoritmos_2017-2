@@ -1,0 +1,15 @@
+Paralelo: 200
+
+Integrantes:
+
+Christopher Gilbert Carroza
+    201573597-2
+Programó: Unión de contornos, metodo merge()
+
+Ignacio Tampe Palma
+    201573514-K
+Programó: Main, y metodos mergeContours() e interpretar().
+
+Franco Zalavari Palma
+    201573501-8
+Programó: busqueda binaria con drones

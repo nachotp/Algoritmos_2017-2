@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "parser.h"
+#include "funciones.h"
 using namespace std;
 
 
