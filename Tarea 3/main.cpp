@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char **argv) {
 
   string str;
-
+  ios::sync_with_stdio(false);
   while (cin >> str) {
     cout << palindromeSubsec(str) << endl;
   }
