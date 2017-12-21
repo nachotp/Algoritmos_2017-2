@@ -4,6 +4,7 @@
 #include <string>
 using namespace std;
 
-int palindromeSubsec(string &str);
+int palindromeSubsec(string &palabra, string &palabra_inv);
+void reverseStr(string &str);
 
 #endif

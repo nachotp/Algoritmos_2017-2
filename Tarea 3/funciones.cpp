@@ -5,26 +5,38 @@
 #include "funciones.h"
 using namespace std;
 
-int palindromeSubsec(string &str){
-  int n = str.length();
-  int i, j, cl;
-  int L[n][n];
+int palindromeSubsec(string &palabra, string &palabra_inv){
+  int n = palabra.length();
+  int i, j;
+  int L[n+1][n+1];
 
    // Strings of length 1 are palindrome of lentgh 1
-  for (i = 0; i < n; i++) L[i][i] = 1;
+    for (i=0; i<=n; i++){
 
-  for (cl=2; cl<=n; cl++){
-    for (i=0; i<n-cl+1; i++){
-      j = i+cl-1;
-      if (str[i] == str[j] && cl == 2){
-        L[i][j] = 2;
-      } else if (str[i] == str[j]){
-        L[i][j] = L[i+1][j-1] + 2;
-      } else {
-        L[i][j] = max(L[i][j-1], L[i+1][j]);
+      for (j=0; j<=n; j++){
+
+        if (i == 0 || j == 0){
+              L[i][j] = 0;
+        }
+
+        else if (palabra[i-1] == palabra_inv[j-1]){
+          L[i][j] = L[i-1][j-1] + 1;
+        }
+
+        else{
+          L[i][j] = max(L[i-1][j], L[i][j-1]);
+        }
       }
     }
-  }
+    return L[n][n];
+}
 
-    return L[0][n-1];
+void reverseStr(string &str)
+{
+    int n = str.length();
+
+    // Swap character starting from two
+    // corners
+    for (int i=0; i<n/2; i++)
+       swap(str[i], str[n-i-1]);
 }
